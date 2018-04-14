@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Archivos a ignorar a la hora de hacer un commit.
+/plantilla.html
