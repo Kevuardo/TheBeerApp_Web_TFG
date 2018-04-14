@@ -1,0 +1,190 @@
+/* Código original de Tim Ruby (https://codepen.io/TimRuby/pen/jcLia). */
+#container {
+  margin: 0 auto;
+  position: relative;
+  height: 145px;
+  width: 124px;
+  top: -10px;
+  overflow: hidden;
+}
+
+#container div {
+  position: absolute;
+}
+
+.pour {
+  position: absolute;
+  width: 10px;
+  height: 0px;
+  top: -5px;
+  left: 45%;
+  background-color: #edaf32;
+  border-radius: 5px;
+}
+
+#beaker {
+  width: 100px;
+  height: 100px;
+  left: 7px;
+  bottom: 0;
+  border: 5px solid #fff;
+  border-top: 0;
+  border-radius: 0 0 15px 15px;
+}
+
+#beaker:before,
+#beaker:after {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: -20px;
+  border: 5px solid #fff;
+  border-bottom: 0;
+  border-radius: 15px 15px 0 0;
+  content: "";
+}
+
+#beaker:before {
+  left: -25px;
+}
+
+#beaker:after {
+  right: -25px;
+}
+
+#liquid {
+  width: 90px;
+  height: 0px;
+  bottom: 0;
+  overflow: hidden;
+  background-color: #edaf32;
+  border: 5px solid #edaf32;
+  border-radius: 0 0 10px 10px;
+}
+
+#liquid:after {
+  position: absolute;
+  width: 55px;
+  height: 100px;
+  left: -20px;
+  bottom: -5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: rotate(30deg);
+  -webkit-transform: rotate(15deg);
+  content: "";
+}
+
+#liquid .bubble {
+  width: 10px;
+  height: 10px;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  -webkit-animation-name: bubble;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes bubble {
+  0% {
+    bottom: 0;
+  }
+
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+    bottom: 40px;
+  }
+
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    bottom: 80px;
+  }
+}
+
+.bubble1 {
+  left: 5px;
+  -webkit-animation-delay: 1000ms;
+  -webkit-animation-duration: 1000ms;
+}
+
+.bubble2 {
+  left: 25px;
+  -webkit-animation-delay: 700ms;
+  -webkit-animation-duration: 1100ms;
+}
+
+.bubble3 {
+  left: 50px;
+  -webkit-animation-delay: 1200ms;
+  -webkit-animation-duration: 1300ms;
+}
+
+.bubble4 {
+  left: 65px;
+  -webkit-animation-delay: 1100ms;
+  -webkit-animation-duration: 700ms;
+}
+
+.bubble5 {
+  left: 85px;
+  -webkit-animation-delay: 1300ms;
+  -webkit-animation-duration: 800ms;
+}
+
+/* Foam */
+
+.beer-foam {
+  position: absolute;
+  bottom: 5px;
+}
+
+.foam-1,
+.foam-2,
+.foam-3,
+.foam-4,
+.foam-5,
+.foam-6,
+.foam-7 {
+  position: absolute;
+  float: left;
+  width: 25px;
+  height: 25px;
+  z-index: 999;
+  border-radius: 15px;
+  background-color: #fefefe;
+}
+
+.foam-1 {
+  top: -15px;
+  left: -5px;
+}
+
+.foam-2 {
+  top: -17px;
+  left: 10px;
+}
+
+.foam-3 {
+  top: -12px;
+  left: 25px;
+}
+
+.foam-4 {
+  top: -17px;
+  left: 40px;
+}
+
+.foam-5 {
+  top: -15px;
+  left: 55px;
+}
+
+.foam-6 {
+  top: -10px;
+  left: 70px;
+}
+
+.foam-7 {
+  top: -15px;
+  left: 80px;
+}
