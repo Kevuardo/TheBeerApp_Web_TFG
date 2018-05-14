@@ -1,4 +1,4 @@
-/* Patrones del index.html */
+/* Patrones del login.html */
 const PATRON_NICK = new RegExp(/^[a-zA-Z0-9_]{5,15}$/); /* Patrón del nick de usuario. */
 const PATRON_EMAIL = new RegExp
   (/^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/); /* Patrón del e-mail de usuario. */
