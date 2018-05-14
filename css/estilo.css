@@ -1,325 +1,224 @@
 :root {
-  --colorPrimario: #ffbb33;
-  --colorPrimarioOscuro: #ff8800;
-  --colorAccent: #000000;
+    --colorPrimario: #ffbb33;
+    --colorPrimarioOscuro: #ff8800;
+    --colorAccent: #000000;
 }
 
 html,
 body {
-  margin: 0 auto;
-  width: 90%;
-  font-family: "Abel", sans-serif;
-  padding: 15px;
-  transition: all 0.3s linear;
-  min-width: 500px;
+    margin: 0 auto;
+    width: 90%;
+    font-family: 'Abel', sans-serif;
+    padding: 15px;
+    transition: all 0.3s linear;
+    min-width: 500px;
 }
 
 header {
-  margin: 0 auto;
-  padding: 15px;
-  width: fit-content;
-  text-align: center;
-  background-color: #ffffff;
-  border: 2px solid #000000;
+    margin: 0 auto;
+    padding: 15px;
+    width: fit-content;
+    text-align: center;
+    background-color: #ffffff;
+    border: 2px solid #000000;
 }
 
 .logo-cabecera {
-  width: fit-content;
-  margin: 0 auto;
-  transition: 0.2s;
+    width: fit-content;
+    margin: 0 auto;
+    transition: 0.2s;
 }
 
 .contenedor {
-  margin: 10px 0px;
-  padding: 15px;
-  text-align: center;
-  background-color: #ffffff;
-  /* border: 2px solid #000000; */
-  -webkit-box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.64);
-  -moz-box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.64);
-  box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.64);
-  border-radius: 5px 15px;
+    margin: 10px 0px;
+    padding: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    /* border: 2px solid #000000; */
+    -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.64);
+    -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.64);
+    box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.64);
+    border-radius: 5px 15px;
 }
 
 .formulario-index {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .formulario-index input {
-  font-family: "Raleway", sans-serif;
-  border: 2px solid var(--colorPrimario);
-  padding: 10px;
-  margin: 5px 0px;
-  width: 200px;
-  border-radius: 8px;
-  outline: none;
+    font-family: 'Raleway', sans-serif;
+    border: 2px solid var(--colorPrimario);
+    padding: 10px;
+    margin: 5px 0px;
+    width: 200px;
+    border-radius: 8px;
+    outline: none;
 }
 
 .boton-personalizado {
-  padding: 10px 20px;
-  margin: 0px 5px;
-  font-family: "Abel", sans-serif;
-  font-weight: 600;
-  height: 100%;
-  background-color: #ffffff;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+    padding: 10px 20px;
+    /* margin: 0px 5px; */
+    font-family: 'Abel', sans-serif;
+    font-weight: 600;
+    height: 100%;
+    background-color: #ffffff;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 #registro-usuario {
-  display: none; /* Inicialmente no se muestra. */
+    display: none; /* Inicialmente no se muestra. */
 }
 
 .autenticacion-index {
-  transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 .mensaje-error {
-  margin: 3px;
-  padding: 0px 5px;
-  display: none;
-  font-weight: bold;
-  color: #d8000c;
-  border: 1px solid #ea0001;
-  background-color: #ffd2d2;
-  transition: opacity 0.2s;
-  cursor: pointer;
+    margin: 3px;
+    padding: 0px 5px;
+    display: none;
+    font-weight: bold;
+    color: #d8000c;
+    border: 1px solid #ea0001;
+    background-color: #ffd2d2;
+    transition: opacity 0.2s;
+    cursor: pointer;
 }
 
 /* Estilo de los botones - inicio. */
 
 .boton-personalizado:active,
 .boton-personalizado:focus {
-  outline: 0;
+    outline: 0;
 }
 
 .botonAccion {
-  color: var(--colorAccent);
-  border: 2px solid var(--colorAccent);
+    color: var(--colorAccent);
+    border: 2px solid var(--colorAccent);
 }
 
 .botonAccion:hover {
-  color: #ffffff;
-  background-color: var(--colorAccent);
+    color: #ffffff;
+    background-color: var(--colorAccent);
+}
+
+.botonAccion:focus {
+    color: #ffffff;
+    background-color: var(--colorAccent);
 }
 
 .boton-cambio {
-  color: var(--colorPrimarioOscuro);
-  border: 2px solid var(--colorPrimarioOscuro);
+    color: var(--colorPrimarioOscuro);
+    border: 2px solid var(--colorPrimarioOscuro);
 }
 
 .boton-cambio:hover {
-  color: #ffffff;
-  background-color: var(--colorPrimarioOscuro);
+    color: #ffffff;
+    background-color: var(--colorPrimarioOscuro);
+}
+
+.boton-cambio:focus {
+    color: #ffffff;
+    background-color: var(--colorPrimarioOscuro);
+}
+.btnVerde {
+    color: #28af31;
+    border: 2px solid #28af31;
+}
+
+.btnVerde:hover {
+    color: #ffffff;
+    background-color: #28af31;
+}
+
+.btnRojo {
+    color: #ea0001;
+    border: 2px solid #ea0001;
+}
+
+.btnRojo:hover {
+    color: #ffffff;
+    background-color: #ea0001;
+}
+
+.btnAmarillo {
+    color: var(--colorPrimario);
+    border: 2px solid var(--colorPrimario);
+}
+
+.btnAmarillo:hover {
+    color: var(--colorAccent);
+    background-color: var(--colorPrimario);
+    border: 2px solid var(--colorAccent);
 }
 
 /* Estilo de los botones - fin. */
 
-/* Estilo de los elementos de los productos - inicio. */
-.categoria-producto-consulta {
-  margin: 5px;
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: rgba(3, 33, 50, 0.5);
-  border: 2px solid #000000;
-  border-radius: 10px;
+/* Bloquea la selección de texto en ciertos elementos. */
+.nonselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.categoria-producto-consulta h2 {
-  color: #ffffff;
-  text-align: center;
-  clear: both;
-  width: 100%;
+#contenido {
+    margin-top: 50px;
 }
 
-.muestra-producto {
-  margin: 5px;
-  padding: 5px;
-  width: 100px;
-  height: fit-content;
-  background-color: rgba(234, 0, 1, 0.5);
-  border: 2px solid black;
-}
-/* Estilo de los elementos de los productos - fin. */
-
-/* Estilo de los elementos de los pedidos - inicio. */
-.muestra-pedidos-consulta {
-  margin: 5px;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  background-color: rgba(3, 33, 50, 0.5);
-  border: 2px solid #000000;
-  border-radius: 10px;
+#lista-favoritas {
+    height: 400px;
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: scroll;
 }
 
-.muestra-pedido {
-  margin: 5px;
-  padding: 5px;
-  height: fit-content;
-  background-color: rgba(234, 0, 1, 0.5);
-  border: 2px solid black;
-  border-radius: 10px;
+.cerveza-favorita {
+    margin: 3px 4px;
+    padding: 8px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid var(--colorPrimarioOscuro);
+    border-radius: 5%;
+    background-color: var(--colorPrimario);
 }
 
-.lista-productos-pedido {
-  padding: 0px;
-  list-style-type: none;
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  /*margin: 0 auto; */
-}
-/* Estilo de los elementos de los pedidos - fin. */
-
-/* Botón de eliminación de elementos. */
-.eliminar-elemento {
-  float: right;
-  /*margin-top: -70px;*/
-  margin-right: 0px;
-  cursor: pointer;
-  color: #ffffff;
-  border: 1px solid #aeaeae;
-  border-radius: 30px;
-  background: #000000;
-  font-size: 20px;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 0px;
-  padding: 12px 6px;
+.operaciones-cerveza a {
+    cursor: pointer;
+    color: #ffffff;
+    border: 1px solid #aeaeae;
+    border-radius: 50%;
+    background: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 8px 10px;
 }
 
-/*.eliminar-elemento:before {
-    content: "x";
-}*/
-
-/* El modal que se muestra en los productos y pedidos para confirmar su borrado. */
-/* El fondo del modal (tono oscuro tras el contenedor). */
-.modal {
-  display: none; /* Escondido por defecto. */
-  position: fixed;
-  z-index: 1; /* Se mostrará sobre el resto de contenido. */
-  padding-top: 100px; /* Afecta a la ubicación de la caja en la ventana del navegador. */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.4);
+.cerveza-favorita img {
+    width: 50%;
+    margin: 0 auto;
 }
 
-/* Contenido del modal. */
-.modal-content {
-  position: relative;
-  background-color: #ffffff;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: fit-content;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
+.fila {
+    flex-direction: row;
 }
 
-/* Cabecera del modal. */
-.modal-header {
-  padding: 2px 16px;
-  background-color: rgba(234, 0, 1, 0.5);
-  color: #ffffff;
-}
-
-/* Cuerpo del modal. */
-.modal-body {
-  padding: 10px 16px;
-}
-
-/* Botón de cierre del modal (el aspa). */
-.cerrar-modal {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.cerrar-modal:hover,
-.cerrar-modal:focus {
-  color: #000000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Estilo de los botones del modal. */
-.btnVerde {
-  color: #28af31;
-  border: 2px solid #28af31;
-}
-
-.btnVerde:hover {
-  color: #ffffff;
-  background-color: #28af31;
-}
-
-.btnRojo {
-  color: #ea0001;
-  border: 2px solid #ea0001;
-}
-
-.btnRojo:hover {
-  color: #ffffff;
-  background-color: #ea0001;
-}
-
-/* Animaciones del modal. */
-@-webkit-keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-/* Cliente. */
-#tabla-items {
-  font-size: 80%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #000000;
-}
-
-#tabla-items tr th,
-#tabla-items tr td {
-  text-align: left;
-  padding: 10px;
-}
-
-#tabla-items tr:nth-child(even) {
-  background-color: #cccccc;
+.columna {
+    flex-direction: column;
 }
