@@ -1,0 +1,71 @@
+/* Menú superior de la página. */
+.navbar {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+    background-color: var(--colorPrimario);
+    text-align: center;
+    display: inline;
+    transition: margin-left 0.5s;
+}
+
+.elementos-menu-superior {
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    width: 100%;
+    float: left;
+}
+
+.elemento-nav:last-child {
+    margin-left: auto;
+}
+
+.navbar a,
+.navbar span {
+    display: inline-block;
+    padding: 14px 16px;
+    margin: 0;
+    min-height: 100%;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    transition: 0.2s;
+}
+
+.navbar a:hover,
+.navbar span:hover {
+    background: #ffffff;
+    color: black;
+}
+
+.navbar input[type="text"] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #fff;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.navbar button:hover {
+    background: var(--colorPrimarioOscuro);
+}
