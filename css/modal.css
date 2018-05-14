@@ -1,0 +1,95 @@
+/* El modal que se muestra en los productos y pedidos para confirmar su borrado. */
+/* El fondo del modal (tono oscuro tras el contenedor). */
+.modal {
+    display: none; /* Escondido por defecto. */
+    position: fixed;
+    z-index: 1; /* Se mostrará sobre el resto de contenido. */
+    padding-top: 100px; /* Afecta a la ubicación de la caja en la ventana del navegador. */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenido del modal. */
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: fit-content;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* Cabecera del modal. */
+.modal-header {
+    padding: 2px 16px;
+    background-color: var(--colorPrimario);
+    color: #ffffff;
+}
+
+/* Cuerpo del modal. */
+.modal-body {
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Botón de cierre del modal (el aspa). */
+.cerrar-modal {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo de los botones del modal. */
+
+.botones {
+    display: flex;
+}
+
+.botones button {
+    margin: 5px 0px;
+}
+
+/* Animaciones del modal. */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
