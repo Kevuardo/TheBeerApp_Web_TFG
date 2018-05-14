@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Index - CheerApp!</title>
+  <title>Login - CheerApp!</title>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <!-- Código original de Tim Ruby (https://codepen.io/TimRuby/pen/jcLia). -->
   <link rel="stylesheet" type="text/css" href="beer-beaker/css/beer-beaker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
   <div class="contenedor autenticacion-index">
 
     <div class="logo-cabecera">
-      <a href="index.html">
+      <a href="login.html">
         <img src="assets/img/ca_texto.png"></img>
       </a>
     </div>
@@ -31,7 +32,10 @@
       <form class="formulario-index" id="formulario-login">
 
         <input type="text" name="email-login" id="email-login" placeholder="Correo electrónico" autofocus="true">
-        <input type="password" name="password-login" id="password-login" placeholder="Contraseña">
+        <div class="fila">
+          <input type="password" name="password-login" id="password-login" placeholder="Contraseña">
+          <button type="button" class="boton-personalizado btnAmarillo" id="btnVisibilidadPasswordLogin"><i class="fa fa-eye" aria-hidden="true"></i></button>
+        </div>
 
         <span class="mensaje-error" id="mensaje-error-login"></span>
 
@@ -48,13 +52,20 @@
 
       <form class="formulario-index" id="formulario-registro">
 
+        <input type="text" name="nick-registro" id="nick-registro" placeholder="Nick de usuario">
+        <div class="fila">
+          <label for="edad-registro">Edad (+18): </label>
+          <input type="number" name="edad-registro" id="edad-registro" min="18" max="130" style="width: fit-content" value="18">
+        </div>
         <input type="text" name="email-registro" id="email-registro" placeholder="Correo electrónico" autofocus="true">
-        <input type="password" name="password-registro" id="password-registro" placeholder="Contraseña">
-        <select id="roles" style="margin: 5px;">
-          <option selected value="defecto">Seleccione una opción...</option>
-          <option value="cliente">Cliente</option>
-          <option value="administrador">Administrador</option>
-        </select>
+        <div class="fila">
+          <input type="password" name="password-registro" id="password-registro" placeholder="Contraseña">
+          <button type="button" class="boton-personalizado btnAmarillo" id="btnVisibilidadPasswordRegistro"><i class="fa fa-eye" aria-hidden="true"></i></button>
+        </div>
+        <div class="fila">
+          <input type="password" name="password-registro-repe" id="password-registro-repe" placeholder="Repita la contraseña">
+          <button type="button" class="boton-personalizado btnAmarillo" id="btnVisibilidadPasswordRepeRegistro"><i class="fa fa-eye" aria-hidden="true"></i></button>
+        </div>
 
         <span class="mensaje-error" id="mensaje-error-registro"></span>
 
@@ -114,7 +125,9 @@
 </script>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/background-color-change.js"></script>
 <script type="text/javascript" src="js/funcionalidad.js"></script>
+<script type="text/javascript" src="js/regex.js"></script>
 <script type="text/javascript" src="beer-beaker/js/beer-beaker.js"></script>
 
 </html>
