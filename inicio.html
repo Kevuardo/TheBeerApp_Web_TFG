@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Inicio - CheerApp!</title>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/estilo.css">
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="css/scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="css/modal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <div id="superior">
+    <!-- Menú lateral. -->
+    <div class="sidenav hide-menu nonselectable">
+      <div id="cierre-sidebar">
+        <button class="closebtn">&times;</button>
+      </div>
+      <div id="info-usuario">
+        <img src="assets/img/avatar.png" height="50px" width="50px" alt="Avatar" title="Avatar" style="border-radius: 50%;">
+        <b id="nickUsuario">
+          Nick de usuario
+        </b>
+        <b id="emailUsuario">email@gmail.com</b>
+      </div>
+      <div id="contenedor-acciones">
+        <div id="acciones-usuario-sidebar">
+          <b>Usuario</b>
+          <ul class="acciones">
+            <li>
+              <a href="#">Cerrar sesión</a>
+            </li>
+          </ul>
+        </div>
+        <div id="otras-acciones-sidebar">
+          <b>Otros</b>
+          <ul class="acciones">
+            <li>
+              <a href="#">Información de la app</a>
+            </li>
+            <li>
+              <a href="#">Reportar incidencias</a>
+            </li>
+            <li>
+              <a href="#">Sugerir cambios</a>
+            </li>
+            <li>
+              <a href="#">Agradecimientos</a>
+            </li>
+            <li>
+              <a href="#">Extras de la app</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Menú superior. -->
+    <div class="navbar">
+
+      <div class="elementos-menu-superior nonselectable">
+        <div id="enlaces-nav">
+          <span id="btn-sidenav" style="cursor:pointer" class="elemento-nav">&#9776;</span>
+          <a id="agregar-cerveza" class="redireccionamiento-header elemento-nav">Añadir nueva cerveza</a>
+        </div>
+        <div class="elemento-nav">
+          <input type="text" name="busqueda-cerveza" id="busqueda-cerveza" placeholder="Buscar cerveza">
+          <button>
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="contenido">
+
+    <div id="usuario-no-logueado" style="display: none;">
+      <div class="contenedor">
+        <h2>No hay ningún usuario logueado actualmente. Dirígete a
+          <a href="login.html">esta dirección</a> para iniciar sesión en el sistema.</h2>
+      </div>
+    </div>
+
+    <div id="usuario-logueado">
+      <div class="contenedor" id="contenedor-cervezas-favoritas">
+        <div id="lista-vacia" style="display: flex; flex-direction: column; align-items: center; opacity: 0.5;">
+          <img src="assets/img/beer_512.png" alt="Lista vacía" title="Lista vacía">
+          <b>No se ha encontrado ningún favorito, ¡eso hay que arreglarlo!</b>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+
+  /* Inicializa Firebase. */
+  var config = {
+    apiKey: "AIzaSyDO4kioJ5iMzBdw8KbMoJNiXRBLqPOYofU",
+    authDomain: "thebeerapp-e1817.firebaseapp.com",
+    databaseURL: "https://thebeerapp-e1817.firebaseio.com",
+    projectId: "thebeerapp-e1817",
+    storageBucket: "thebeerapp-e1817.appspot.com",
+    messagingSenderId: "413939577453"
+  };
+  firebase.initializeApp(config);
+
+  /* Inicializa la BDD de Firebase. */
+  var database = firebase.database();
+
+</script>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/background-color-change.js"></script>
+<script type="text/javascript" src="js/regex.js"></script>
+<script type="text/javascript" src="js/sidebar.js"></script>
+<script type="text/javascript" src="js/funcionalidad-panel.js"></script>
+<script type="text/javascript" src="js/alphabeticalBeerSorter.js"></script>
+<script type="text/javascript" src="js/Usuario.js"></script>
+<script type="text/javascript" src="js/Cerveza.js"></script>
+
+</html>

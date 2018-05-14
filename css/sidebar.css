@@ -1,0 +1,120 @@
+/* Código original de W3Schools y mnodificado por mí para añadir comportamientos extra. */
+/* #superior {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    transition: background-color 0.2s;
+} */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 40px;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+
+#enlaces-nav {
+    transition: 0.5s;
+}
+
+.sidenav #contenedor-acciones a,
+.sidenav #contenedor-acciones b,
+.closebtn {
+    padding: 8px 8px 8px 15px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav #contenedor-acciones a:hover,
+.sidenav #contenedor-acciones b:hover,
+.closebtn:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin-left: 50px;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 35px;
+    cursor: pointer;
+    outline: inherit;
+}
+
+/* .hide-menu {
+    -webkit-transform: translate3d(300px, 0, 0);
+    -moz-transform: translate3d(300px, 0, 0);
+    -o-transform: translate3d(300px, 0, 0);
+    -ms-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.show-menu {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+} */
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+#cierre-sidebar {
+    padding: 5px 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+#info-usuario {
+    background-color: var(--colorPrimarioOscuro);
+    padding: 15px 15px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+#info-usuario b {
+    margin: 0px !important;
+    padding: 2px 0px !important;
+}
+
+.acciones {
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0px;
+    list-style-type: none;
+    color: inherit;
+}
+
+.acciones li {
+    padding-left: 10px;
+}
