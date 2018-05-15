@@ -216,9 +216,21 @@ header {
 }
 
 .fila {
+    display: flex;
     flex-direction: row;
+    padding: 10px;
+    justify-content: center;
 }
 
+.fila button {
+    margin: 0px 5px;
+}
 .columna {
+    display: flex;
     flex-direction: column;
+    padding: 10px;
+}
+
+.columna button {
+    margin: 5px 0px;    
 }

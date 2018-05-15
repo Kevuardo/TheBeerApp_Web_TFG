@@ -59,14 +59,8 @@
     cursor: pointer;
 }
 
-/* Estilo de los botones del modal. */
-
-.botones {
-    display: flex;
-}
-
-.botones button {
-    margin: 5px 0px;
+.campos-detalle {
+    font-size: 90%;
 }
 
 /* Animaciones del modal. */
