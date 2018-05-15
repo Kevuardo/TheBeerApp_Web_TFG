@@ -13,6 +13,12 @@ $(document).ready(function() {
             /* Esconde los divs de interacción con la base de datos, para que no se puedan realizar operaciones,
 		    ya que resultarán infructuosas al no haber un usuario logueado. */
             $('#usuario-logueado').hide(0, function() {
+                $('#superior').hide(0);                
+                $('#superior').html(''); 
+                // $('.sidenav').hide(0);                
+                // $('.sidenav').html('');                
+                // $('.navbar').hide(0);
+                // $('.navbar').html('');                                
                 $('#usuario-no-logueado').show(0);
             });
         } else {
@@ -129,47 +135,14 @@ function cargarCervezasFavoritas() {
                         + '<img src="assets/img/ca_icono_color.png" alt="' + coleccionCervezasFavoritas[i].nombre + '" title="' + coleccionCervezasFavoritas[i].nombre + '">'
                         + '<b>' + coleccionCervezasFavoritas[i].nombre + '</b>'
 
-                        + '<div class="modal" id="modal-eliminar-favorita-' + coleccionCervezasFavoritas[i].id + '">'
-							+ '<div class="modal-content">'
-								+ '<div class="modal-header">'
-									+ '<span class="cerrar-modal">&times;</span>'
-									+ '<h2>Eliminar como favorita</h2>'
-								+ '</div>'
-								+ '<div class="modal-body">'
-                                    + '<b>¿Está seguro de querer eliminar la cerveza "' + coleccionCervezasFavoritas[i].nombre + '" como favorita?</b>'
-                                    + '<div class="botones fila" style="padding: 10px;">'
-                                        + '<button class="boton-personalizado btnVerde" id="eliminar-favorita-' + coleccionCervezasFavoritas[i].id + '">Eliminar favorita</button>'
-                                        + '<button class="boton-personalizado btnRojo" id="cancelar-eliminar-favorita-' + coleccionCervezasFavoritas[i].id + '">Cancelar</button>'
-                                    + '</div>'
-								+ '</div>'
-							+ '</div>'
-                        + "</div>"
-                        
-                        + '<div class="modal" id="modal-detalle-favorita-' + coleccionCervezasFavoritas[i].id + '">'
-							+ '<div class="modal-content">'
-								+ '<div class="modal-header">'
-									+ '<span class="cerrar-modal">&times;</span>'
-									+ '<h2>Detalle de' + coleccionCervezasFavoritas[i].nonbre + '</h2>'
-								+ '</div>'
-								+ '<div class="modal-body">'
-                                    + '<div class="contenedor-detalle" style="display:flex; flex-direction:row">'
-                                        + '<div class="imagen-detalle">'
-                                            + '<img src="assets/img/ca_icono_color.png" alt="' + coleccionCervezasFavoritas[i].nombre + '" title="' + coleccionCervezasFavoritas[i].nombre + '">'
-                                        + '</div>'
-                                        + '<div class="campos-detalle" style="display: flex; flex-direction: column; font-size: 90%">'
-                                            + '<b>Nombre: ' + coleccionCervezasFavoritas[i].nombre + '</b>'
-                                            + '<b>Grados: ' + coleccionCervezasFavoritas[i].grados + '%</b>'
-                                            + '<b>Tipo: ' + coleccionCervezasFavoritas[i].tipo + '</b>'
-                                            + '<b>País de origen: ' + coleccionCervezasFavoritas[i].paisOrigen + '</b>'
-                                            + '<b>Descripción: Descripción comercial de la cerveza.</b>'
-                                        + '</div>'
-                                        + '<div class="botones columna" style="padding: 10px; display:flex; flex-direction:column">'
-                                            + '<button class="boton-personalizado btnAmarillo" id="marcar-favorita-' + coleccionCervezasFavoritas[i].id + '">Favorita <i class="fa fa-star-half-o" aria-hidden="true"></i></button>'
-                                            + '<button class="boton-personalizado btnVerde" id="ubicar-cerveza' + coleccionCervezasFavoritas[i].id + '">Ubicar <i class="fa fa-map-marker" aria-hidden="true"></i></button>'
-                                        + '</div>'
-                                    + '</div>'
-								+ '</div>'
-							+ '</div>'
+                        + '<div class="modal nonselectable">'
+                            + '<div class="modal-content">'
+                                + '<div class="modal-header">'
+                                    + '<span class="cerrar-modal">&times;</span>'
+                                + '</div>'
+                                + '<div class="modal-body">'
+                                + '</div>'
+                            + '</div>'
                         + "</div>"
 
                     + '</div>');                
@@ -180,71 +153,27 @@ function cargarCervezasFavoritas() {
 
 				/* Recoge el atributo ID del elemento padre, que es el contenedor general de la cerveza, el cual coincide con el ID del modal. */
                 var idElementoPadre = $(this).parent().parent().attr('id');
-                
-                console.log(idElementoPadre);
-                
-				/* Muestra el modal correspondiente. */
-				$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'block');
 
-				/* Añade listeners a los botones inferiores del modal y al botón superior. */
-				$('#modal-eliminar-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #eliminar-favorita-" + idElementoPadre).on('click', function() {
-					/* Esconde el modal y el contenedor de la cerveza favorita, y elimina la cerveza de las favoritas del usuario en la BDD. */
-					$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'none');
-
-                    var usuarioActual = firebase.auth().currentUser; /* El usuario que tiene sesión iniciada en el momento. */
-                    
-                    var database = firebase.database();
-					database.ref('usuarios/' + usuarioActual.uid + '/favoritas/' + idElementoPadre).remove();
-
-				});
-
-				$('#modal-eliminar-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #cancelar-eliminar-favorita-" + idElementoPadre).on('click', function() {
-					/* Esconde el modal. */
-					$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'none');
-				});
-
-				$('#modal-eliminar-favorita-' + idElementoPadre + " > .modal-content > .modal-header > .cerrar-modal").on('click', function() {
-					/* Esconde el modal. */
-					$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'none');
-				});
+                /* Configura el modal en función de la cerveza que lo abre. */
+                for (var i = 0; i < coleccionCervezasFavoritas.length; i++) {
+                    if (coleccionCervezasFavoritas[i].id == idElementoPadre) {
+                        configurarModal('favorita', coleccionCervezasFavoritas[i]);
+                    }
+                }
 
 			});
 
-            /* A continuación se añaden listener para los modales de las distintas operaciones de las cervezas. */
             $('.cerveza-favorita > .operaciones-cerveza > .detalle-cerveza').on('click', function() {
 
 				/* Recoge el atributo ID del elemento padre, que es el contenedor general de la cerveza, el cual coincide con el ID del modal. */
                 var idElementoPadre = $(this).parent().parent().attr('id');
-                
-                console.log(idElementoPadre);
-                //TODO: Evalúa si la cerveza ya figura como favorita del usuario.
-                
-				/* Muestra el modal correspondiente. */
-				$('#modal-detalle-favorita-' + idElementoPadre).css('display', 'block');
 
-				/* Añade listeners a los botones laterales del modal y al botón superior. */
-				$('#modal-detalle-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #marcar-favorita-" + idElementoPadre).on('click', function() {
-                    
-
-                    /* Esconde el modal y el contenedor de la cerveza favorita, y elimina la cerveza de las favoritas del usuario en la BDD. */
-					$('#modal-detalle-favorita-' + idElementoPadre).css('display', 'none');
-
-                    var usuarioActual = firebase.auth().currentUser; /* El usuario que tiene sesión iniciada en el momento. */
-                    
-                    // var database = firebase.database();
-					// database.ref('usuarios/' + usuarioActual.uid + '/favoritas/' + idElementoPadre).remove();
-
-				});
-
-				$('#modal-detalle-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #cancelar-eliminar-favorita-" + idElementoPadre).on('click', function() {
-					/* Esconde el modal. */
-					$('#modal-detalle-favorita-' + idElementoPadre).css('display', 'none');
-				});
-
-				$('#modal-detalle-favorita-' + idElementoPadre + " > .modal-content > .modal-header > .cerrar-modal").on('click', function() {
-					/* Esconde el modal. */
-					$('#modal-detalle-favorita-' + idElementoPadre).css('display', 'none');
-				});
+                /* Configura el modal en función de la cerveza que lo abre. */
+                for (var i = 0; i < coleccionCervezasFavoritas.length; i++) {
+                    if (coleccionCervezasFavoritas[i].id == idElementoPadre) {
+                        configurarModal('detalle', coleccionCervezasFavoritas[i]);
+                    }
+                }
 
 			});
 
