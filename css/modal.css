@@ -59,6 +59,13 @@
     cursor: pointer;
 }
 
+/* Específicos de cada modal. */
+.mapa-cerveza {
+    width: 500px;
+    height: 300px;
+    background-color: #ffffff;
+}
+
 .campos-detalle {
     font-size: 90%;
 }
