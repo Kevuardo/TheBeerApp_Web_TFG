@@ -1,7 +1,81 @@
 function configurarModal(tipoModal, cerveza) {
+
     switch(tipoModal) {
+
         case 'ubicacion':
-           
+
+            $('.cerveza-favorita#' + cerveza.id + '> .modal').attr('id', 'modal-ubicar-favorita-' + cerveza.id);
+
+            var nodoUbicaciones = database.ref('ubicaciones');
+            nodoUbicaciones.on('value', function(_ubicaciones) {
+
+                /* Vacía el array para introducir cada una de las ubicaciones con sus datos actualizados. */            
+                coleccionUbicaciones = [];
+
+                _ubicaciones.forEach(function(_ubicacion) {
+                    var titulo = '';
+                    var latitud = 0;
+                    var longitud = 0;
+                    var id = _ubicacion.key;
+        
+                    _ubicacion.forEach(function(_parametro) {
+                        /* Recoge los parámetros almacenados en la BDD. */
+                        if (_parametro.key == 'titulo') {
+                            titulo = _parametro.val();
+                        } else if (_parametro.key == 'latitud') {
+                            latitud = _parametro.val();
+                        } else if (_parametro.key == 'longitud') {
+                            longitud = _parametro.val();
+                        }
+                    });
+        
+                    /* Crea un nuevo objeto por cada favorita y lo guarda en la colección. */
+                    if (
+                        titulo.trim() != '' &&
+                        !isNaN(latitud) &&
+                        !isNaN(longitud) &&
+                        id.trim() != ''
+                    ) {
+                        nuevaUbicacion = new Ubicacion(
+                           titulo, latitud, longitud, id
+                        );
+                        coleccionUbicaciones.push(nuevaUbicacion);
+                    }
+                });
+
+                if (coleccionUbicaciones.length == 0) {
+                    
+                    $('.cerveza-favorita#' + cerveza.id + '> .modal > .modal-content > .modal-body').html(
+                        '<b>No se han encontrado ubicaciones para esta cerveza</b>'
+                    );
+
+                } else {
+
+                    $('.cerveza-favorita#' + cerveza.id + '> .modal').attr('id', 'modal-ubicar-favorita-' + cerveza.id);
+                    $('.cerveza-favorita#' + cerveza.id + '> .modal > .modal-content > .modal-header').html(
+                        '<span class="cerrar-modal">&times;</span>'
+                        + '<h2>Ubicaciones de ' + cerveza.nombre + '</h2>'
+                    );
+                    $('.cerveza-favorita#' + cerveza.id + '> .modal > .modal-content > .modal-body').html(
+                        '<div class="mapa-cerveza" id="mapa-' + cerveza.id + '">'
+                        
+                        + '</div>'
+                    );
+
+                    /* Muestra el modal correspondiente. */
+                    $('#modal-ubicar-favorita-' + cerveza.id).css('display', 'block');
+
+                    $('#modal-ubicar-favorita-' + cerveza.id + " > .modal-content > .modal-header > .cerrar-modal").on('click', function() {
+                        /* Esconde el modal. */
+                        $('#modal-ubicar-favorita-' + cerveza.id).css('display', 'none');
+                    });
+
+                    initMap(cerveza.id, coleccionUbicaciones);
+
+                }
+
+            });
+
             break;
 
         case 'favorita':
