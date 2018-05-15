@@ -1,0 +1,48 @@
+// /* Muestra el modal correspondiente. */
+// $('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'block');
+
+// /* Añade listeners a los botones inferiores del modal y al botón superior. */
+// $('#modal-eliminar-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #eliminar-favorita-" + idElementoPadre).on('click', function() {
+// 	/* Esconde el modal y el contenedor de la cerveza favorita, y elimina la cerveza de las favoritas del usuario en la BDD. */
+// 	$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'none');
+
+//     var usuarioActual = firebase.auth().currentUser; /* El usuario que tiene sesión iniciada en el momento. */
+    
+//     var database = firebase.database();
+// 	database.ref('usuarios/' + usuarioActual.uid + '/favoritas/' + idElementoPadre).remove();
+
+// });
+
+// $('#modal-eliminar-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #cancelar-eliminar-favorita-" + idElementoPadre).on('click', function() {
+// 	/* Esconde el modal. */
+// 	$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'none');
+// });
+
+// $('#modal-eliminar-favorita-' + idElementoPadre + " > .modal-content > .modal-header > .cerrar-modal").on('click', function() {
+// 	/* Esconde el modal. */
+// 	$('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'none');
+// });
+
+// /* Muestra el modal correspondiente. */
+// $('#modal-detalle-favorita-' + idElementoPadre).css('display', 'block');
+
+// /* Añade listeners a los botones laterales del modal y al botón superior. */
+// /* Como este es el modal de una cerveza favorita, la operación de alternar favorita la eliminará como tal al pulsar el modal. */
+// $('#modal-detalle-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .contenedor-detalle > .botones > #marcar-favorita-" + idElementoPadre).on('click', function() {
+
+//     /* Esconde el modal y el contenedor de la cerveza favorita, y elimina la cerveza de las favoritas del usuario en la BDD. */
+//     $('#modal-detalle-favorita-' + idElementoPadre).css('display', 'none');
+
+//     $('#modal-eliminar-favorita-' + idElementoPadre).css('display', 'block');
+
+// });
+
+// $('#modal-detalle-favorita-' + idElementoPadre + " > .modal-content > .modal-body > .botones > #cancelar-eliminar-favorita-" + idElementoPadre).on('click', function() {
+// 	/* Esconde el modal. */
+// 	$('#modal-detalle-favorita-' + idElementoPadre).css('display', 'none');
+// });
+
+// $('#modal-detalle-favorita-' + idElementoPadre + " > .modal-content > .modal-header > .cerrar-modal").on('click', function() {
+// 	/* Esconde el modal. */
+// 	$('#modal-detalle-favorita-' + idElementoPadre).css('display', 'none');
+// });
