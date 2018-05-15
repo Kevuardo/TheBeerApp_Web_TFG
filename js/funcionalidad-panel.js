@@ -5,6 +5,9 @@ var authentication = firebase.auth();
 var nuevoUsuario;
 var nuevaCerveza;
 var coleccionCervezasFavoritas = [];
+var nuevaUbicacion;
+var coleccionUbicaciones = [];
+var coleccionMarcadores = [];
 
 $(document).ready(function() {
     /* Evalúa el estado del usuario al acceder a la página, para saber si hay usuario logueado o no. */
@@ -43,9 +46,7 @@ function cargarDatosSidebar() {
         nick = _datos.child('nick').val();
         email = _datos.child('email').val();
 
-        console.log(nick + ': ' + email);
         nuevoUsuario = new Usuario(nick, email);
-        console.log(nuevoUsuario);
 
         $('#nickUsuario').html(nuevoUsuario.nick);
         $('#emailUsuario').html(nuevoUsuario.email);
@@ -104,7 +105,7 @@ function cargarCervezasFavoritas() {
         });
 
         /* Primero vacía el contenedor de cara a una nueva inserción. */
-        $('#contendor-cervezas-favoritas').html('');
+        $('#contenedor-cervezas-favoritas').html('');
 
         if (coleccionCervezasFavoritas.length == 0) {
             $('#contenedor-cervezas-favoritas').html(
@@ -149,6 +150,20 @@ function cargarCervezasFavoritas() {
             }
 
             /* A continuación se añaden listener para los modales de las distintas operaciones de las cervezas. */
+            $('.cerveza-favorita > .operaciones-cerveza > .ubicar-cerveza').on('click', function() {
+
+				/* Recoge el atributo ID del elemento padre, que es el contenedor general de la cerveza, el cual coincide con el ID del modal. */
+                var idElementoPadre = $(this).parent().parent().attr('id');
+
+                /* Configura el modal en función de la cerveza que lo abre. */
+                for (var i = 0; i < coleccionCervezasFavoritas.length; i++) {
+                    if (coleccionCervezasFavoritas[i].id == idElementoPadre) {
+                        configurarModal('ubicacion', coleccionCervezasFavoritas[i]);
+                    }
+                }
+
+			});
+
             $('.cerveza-favorita > .operaciones-cerveza > .eliminar-cerveza').on('click', function() {
 
 				/* Recoge el atributo ID del elemento padre, que es el contenedor general de la cerveza, el cual coincide con el ID del modal. */
