@@ -175,6 +175,26 @@ header {
     margin-top: 50px;
 }
 
+#contenedor-busqueda {
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+#busqueda-cerveza {
+    /* padding: 6px; */
+    /* margin-top: 8px; */
+    font-size: 17px;
+    /* border: none; */
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Sobreescribe estilo de texto en los items de la búsqueda al ser demasiado pequeño por defecto. */
+.easy-autocomplete-container ul li {
+    font-size: 17px !important;
+}
+
 #lista-favoritas {
     height: 400px;
     padding: 5px 0px;
