@@ -234,3 +234,9 @@ header {
 .columna button {
     margin: 5px 0px;    
 }
+
+.anotacion {
+    color: #ea0001;
+    text-transform: capitalize;
+    text-decoration: underline #ea0001;
+}
