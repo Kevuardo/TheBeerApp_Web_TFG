@@ -5,6 +5,8 @@ var authentication = firebase.auth();
 var nuevoUsuario;
 var nuevaCerveza;
 var coleccionCervezasFavoritas = [];
+var nuevaCervezaBusqueda;
+var coleccionCervezas = [];
 var nuevaUbicacion;
 var coleccionUbicaciones = [];
 var coleccionMarcadores = [];
@@ -30,6 +32,14 @@ $(document).ready(function() {
 
             /* Carga las cervezas favoritas del usuario. De no haber ninguna, se ha definido una muestra por defecto. */
             cargarCervezasFavoritas();
+
+            /* Recoge todas las cervezas de la BDD, las guarda en un array y lo usa para la búsqueda de las cervezas. */
+            recogerCervezasBDD();
+
+            $('#agregar-cerveza').on('click', function(){
+                agregarCerveza();
+            });
+            
         }
     });
 });
@@ -197,4 +207,136 @@ function cargarCervezasFavoritas() {
         }
 
     });
+}
+
+/* Recoge todas las cervezas que hay en la BDD en el nodo '/cervezas'. */
+function recogerCervezasBDD() {
+
+    var nodoCervezas = database.ref(
+        'cervezas'
+    );
+
+    nodoCervezas.on('value', function(_cervezas) {
+        /* Vacía el array para introducir cada una de las cervezas favoritas del usuario con sus datos actualizados. */
+        coleccionCervezas = [];
+
+        _cervezas.forEach(function(_cerveza) {
+            var nombre = '';
+            var grados = 0;
+            var tipo = '';
+            var paisOrigen = '';
+            var descripcion = '';
+            var id = _cerveza.key;
+
+            _cerveza.forEach(function(_parametro) {
+                /* Recoge los parámetros almacenados en la BDD. */
+                if (_parametro.key == 'grados') {
+                    grados = _parametro.val();
+                } else if (_parametro.key == 'nombre') {
+                    nombre = _parametro.val();
+                } else if (_parametro.key == 'paisOrigen') {
+                    paisOrigen = _parametro.val();
+                } else if (_parametro.key == 'tipo') {
+                    tipo = _parametro.val();
+                }
+            });
+
+            /* Crea un nuevo objeto por cada favorita y lo guarda en la colección. */
+            if (
+                nombre.trim() != '' &&
+                !isNaN(grados) &&
+                tipo.trim() != '' &&
+                paisOrigen.trim() != '' &&
+                id.trim() != ''
+            ) {
+                nuevaCerveza = new Cerveza(
+                    nombre,
+                    grados,
+                    tipo,
+                    paisOrigen,
+                    id
+                );
+                coleccionCervezas.push(nuevaCerveza);
+            }
+        });
+
+        /* Una vez cargadas las cervezas en el array, lo ordena alfabéticamente y lo convierte a JSON para
+        utilizarlo como fuente de datos para EasyAutocomplete. */
+        coleccionCervezas.sort(compararCervezas);
+        
+        var coleccionCervezasJSON = JSON.parse(JSON.stringify(coleccionCervezas));
+
+        /* Configuración de EasyAutocomplete. */
+        var configEasyAutocomplete = {
+
+            /* Fuente de carga de datos. */
+            data: coleccionCervezasJSON,
+
+            /* Valor por el que filtrar. */
+            getValue: "nombre",
+
+            /* Eventos y otras directrices. */
+            list: {
+
+                /* Muestra sólo elementos con coincidencias con respecto a lo insertado en el input. */
+                match: {
+                    enabled: true
+                },
+
+                /* Evento activado al seleccionarse un elemento, ya sea clicando en él, haciendo hover,
+                seleccionándolo con teclas de dirección o incluso en el caso de clicar fuera de la lista
+                selecciona la última cerveza seleccionada por cualquiera de los métodos anteriormente
+                listados. */
+                onChooseEvent: function() {
+                    var cervezaSeleccionada = $("#busqueda-cerveza").getSelectedItemData();
+                    nuevaCervezaBusqueda = new Cerveza(
+                        cervezaSeleccionada.nombre,
+                        cervezaSeleccionada.grados,
+                        cervezaSeleccionada.tipo,
+                        cervezaSeleccionada.paisOrigen,
+                        cervezaSeleccionada.id
+                    );
+                    mostrarCervezaBuscada(nuevaCervezaBusqueda);
+                },
+
+                /* Animaciones de la lista de resultados al mostrarse y esconderse. */
+                showAnimation: {
+                    type: "fade",
+                    time: 100,
+                    callback: function() {}
+                },
+        
+                hideAnimation: {
+                    type: "fade",
+                    time: 100,
+                    callback: function() {}
+                }
+
+            }
+
+        }        
+
+        /* Asigna la configuración al input de búsqueda. */
+        $('#busqueda-cerveza').easyAutocomplete(configEasyAutocomplete);
+
+    });
+
+}
+
+/* Función encargada de mostrar en un modal los datos de la cerveza seleccionada en la búsqueda. */
+function mostrarCervezaBuscada(cervezaSeleccionada){
+    
+    // console.log(cervezaSeleccionada);
+
+    configurarModal('busqueda', cervezaSeleccionada, 'detalle');
+
+}
+
+/* Función encargada de mostrar el modal de agregado de cervezas. */
+function agregarCerveza() {
+
+    /* El parámetro cerveza en este caso será null, ya que va a añadirse y es imposible 
+    hacer referencia sin que exista. */
+    configurarModal('agregar', null, 'agregado');
+
 }

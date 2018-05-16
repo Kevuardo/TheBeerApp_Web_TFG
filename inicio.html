@@ -75,12 +75,25 @@
         <div id="enlaces-nav">
           <span id="btn-sidenav" style="cursor:pointer" class="elemento-nav">&#9776;</span>
           <a id="agregar-cerveza" class="redireccionamiento-header elemento-nav">Añadir nueva cerveza</a>
+          
+          <!-- Modal de agregado. -->
+          <div class="cerveza-agregar">
+            <div class="modal nonselectable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="cerrar-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+          </div>
+
         </div>
         <div class="elemento-nav">
-          <input type="text" name="busqueda-cerveza" id="busqueda-cerveza" placeholder="Buscar cerveza">
-          <button>
+          <!-- <button>
             <i class="fa fa-search"></i>
-          </button>
+          </button> -->
         </div>
       </div>
 
@@ -97,6 +110,24 @@
     </div>
 
     <div id="usuario-logueado">
+
+      <div class="contenedor" id="contenedor-busqueda">
+          <b>Inserte un texto para buscar</b>
+          <input type="text" name="busqueda-cerveza" id="busqueda-cerveza" placeholder="Buscar cerveza" autocomplete="on">
+          <!-- Modal de búsqueda. -->
+          <div class="cerveza-buscada">
+            <div class="modal nonselectable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="cerrar-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
       <div class="contenedor" id="contenedor-cervezas-favoritas">
         <div id="lista-vacia" style="display: flex; flex-direction: column; align-items: center; opacity: 0.5;">
           <img src="assets/img/beer_512.png" alt="Lista vacía" title="Lista vacía">
