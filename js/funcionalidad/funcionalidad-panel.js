@@ -53,6 +53,8 @@ function cargarDatosSidebar() {
     });
 }
 
+/* Función encargada de cargar las cervezas favoritas del usuario, mostrarlas y 
+añadir la configuración de operaciones con las que contarán dichas cervezas. */
 function cargarCervezasFavoritas() {
     var usuarioActual = firebase.auth()
         .currentUser; /* El usuario que tiene sesión iniciada en el momento. */
