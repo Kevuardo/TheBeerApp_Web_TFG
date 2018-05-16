@@ -49,3 +49,6 @@ Temporary Items
 # Archivos a ignorar a la hora de hacer un commit.
 /plantilla.html
 .vscode/*
+
+# Herramienta para autocmpletar en campos de texto.
+# easyautocomplete/*
