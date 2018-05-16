@@ -158,7 +158,7 @@ function cargarCervezasFavoritas() {
                 /* Configura el modal en función de la cerveza que lo abre. */
                 for (var i = 0; i < coleccionCervezasFavoritas.length; i++) {
                     if (coleccionCervezasFavoritas[i].id == idElementoPadre) {
-                        configurarModal('ubicacion', coleccionCervezasFavoritas[i]);
+                        configurarModal('listaFavorita', coleccionCervezasFavoritas[i], 'ubicacion');
                     }
                 }
 
@@ -172,7 +172,7 @@ function cargarCervezasFavoritas() {
                 /* Configura el modal en función de la cerveza que lo abre. */
                 for (var i = 0; i < coleccionCervezasFavoritas.length; i++) {
                     if (coleccionCervezasFavoritas[i].id == idElementoPadre) {
-                        configurarModal('favorita', coleccionCervezasFavoritas[i]);
+                        configurarModal('listaFavorita', coleccionCervezasFavoritas[i], 'favorita');
                     }
                 }
 
@@ -186,7 +186,7 @@ function cargarCervezasFavoritas() {
                 /* Configura el modal en función de la cerveza que lo abre. */
                 for (var i = 0; i < coleccionCervezasFavoritas.length; i++) {
                     if (coleccionCervezasFavoritas[i].id == idElementoPadre) {
-                        configurarModal('detalle', coleccionCervezasFavoritas[i]);
+                        configurarModal('listaFavorita', coleccionCervezasFavoritas[i], 'detalle');
                     }
                 }
 
