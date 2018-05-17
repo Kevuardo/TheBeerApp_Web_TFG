@@ -581,51 +581,93 @@ function configurarModal(tipoModal, cerveza, operacionModal) {
                 case 'agregado':
 
                     /* Rellena el esqueleto previamente definido para esa cerveza favorita. */
-                    $('.cerveza-agregar > .modal').attr('id', 'modal-defecto-favorita-' + cerveza.id);
+                    $('.cerveza-agregar > .modal').attr('id', 'modal-agregar-cerveza');
+                    $('.cerveza-agregar > .modal').css('z-index', '99');
                     $('.cerveza-agregar > .modal > .modal-content > .modal-header').html(
                         '<span class="cerrar-modal">&times;</span>'
-                        + '<h2>Agregar nueva cerveza</h2>'
+                        + '<h2>Añadir nueva cerveza</h2>'
                     );
                     $('.cerveza-agregar > .modal > .modal-content > .modal-body').html(
+                        
                         '<div class="fila">'
                             +'<div class="columna" id="columna-labels-agregar">'
-                                
+                                + '<div class="fila">'
+                                    + '<label for="nombre-cerveza-agregar">Nombre:</label>'
+                                    + '<input type="text" name="nombre-cerveza-agregar" id="nombre-cerveza-agregar" placeholder="Nombre">'
+                                    + '<span class="mensaje-error" id="mensaje-error-nombre-agregar"></span>'
+                                + '</div>'
+                                + '<div class="fila">'
+                                    + '<label for="grados-cerveza-agregar">Grados:</label>'
+                                    + '<input type="text" name="grados-cerveza-agregar" id="grados-cerveza-agregar" placeholder="Gradación">'
+                                    + '<span class="mensaje-error" id="mensaje-error-gradacion-agregar"></span>'
+                                + '</div>'
+                                + '<div class="fila">'
+                                    + '<label for="tipo-cerveza-agregar">Tipo:</label>'
+                                    + '<input type="text" name="tipo-cerveza-agregar" id="tipo-cerveza-agregar" placeholder="Tipo">'
+                                    + '<span class="mensaje-error" id="mensaje-error-tipo-agregar"></span>'
+                                + '</div>'
+                                + '<div class="fila">'
+                                    + '<label for="pais-origen-cerveza-agregar">País de origen:</label>'
+                                    + '<input type="text" name="pais-origen-cerveza-agregar" id="pais-origen-cerveza-agregar" placeholder="País de origen">'
+                                    + '<span class="mensaje-error" id="mensaje-error-pais-origen-agregar"></span>'
+                                + '</div>'
                             + '</div>'
-                            +'<div class="columna" id="columna-inputs-agregar">'
-                                
-                            + '</div>'
-                            +'<div class="columna" id="columna-errores-agregar">'
-                                
-                            + '</div>'
+                        + '</div>'
+                        + '<div class="fila">'
+                            + '<button class="boton-personalizado btnVerde" id="agregar-nueva-cerveza">Agregar nueva cerveza</button>'
                         + '</div>'
 
                     );
 
                     /* Muestra el modal correspondiente. */
-                    mostrarModal('.modal#modal-defecto-favorita-' + cerveza.id);
+                    mostrarModal('.modal#modal-agregar-cerveza');
                     
-                    /* Añade listeners a los botones laterales del modal y al botón superior. */
-
-                    $('.modal#modal-defecto-favorita-' + cerveza.id + " > .modal-content > .modal-body > .columna > #cerrar-defecto-" + cerveza.id).on('click', function() {
+                    /* Añade listeners al botón inferior del modal y al botón superior. */
+                    $('.modal#modal-agregar-cerveza > .modal-content > .modal-body > .fila > #agregar-nueva-cerveza').on('click', function() {
                         
-                        /* Cambia la configuración del modal para que sea la de 'favorita'. */
-                        esconderModal('.modal#modal-defecto-favorita-' + cerveza.id);
+                        /* Comprueba los campos y realiza la inserción en BDD de ser correctos. */
+                        todoCorrectoInsercion = false; 
+                        
+                        nuevaCervezaInsercion = validarCamposAgregarCerveza();
 
+                        if (todoCorrectoInsercion) {
+
+                            /* Genera una key aleatoria para la inserción en la BDD. */
+                            var claveAleatoria = firebase.database().ref('cervezas').push().key;
+
+                            var database = firebase.database();
+                            database.ref('cervezas/' + claveAleatoria).set({
+                                nombre: nuevaCervezaInsercion.nombre,
+                                grados: nuevaCervezaInsercion.grados,
+                                tipo: nuevaCervezaInsercion.tipo,
+                                paisOrigen: nuevaCervezaInsercion.paisOrigen
+                            }).then(
+                                database.ref('cervezas/' + claveAleatoria).update({
+                                    id: claveAleatoria
+                                }).then(
+                                    function() {
+                                        alert('¡Cerveza agregada como favorita con éxito!');
+                                        esconderModal('.modal#modal-agregar-cerveza');
+                                    }
+                            ));
+                        }
+
+                        //esconderModal('.modal#modal-agregar-cerveza');
                     });
 
-                    $('.modal#modal-defecto-favorita-' + cerveza.id + " > .modal-content > .modal-header > .cerrar-modal").on('click', function() {
+                    $('.modal#modal-agregar-cerveza > .modal-content > .modal-header > .cerrar-modal').on('click', function() {
                         
                         /* Esconde el modal. */
-                        esconderModal('.modal#modal-defecto-favorita-' + cerveza.id);
+                        esconderModal('.modal#modal-agregar-cerveza');
 
                     });
                     
                     /* Captura cuándo se clica fuera del contenido del modal para cerrarlo también. */
-                    $('.modal#modal-defecto-favorita-' + cerveza.id).on('click', function(event) {
+                    $('.modal#modal-agregar-cerveza').on('click', function(event) {
                         
                         /* Esconde el modal. */
-                        if (event.target == $('.modal#modal-defecto-favorita-' + cerveza.id)[0]) {
-                            esconderModal('.modal#modal-defecto-favorita-' + cerveza.id);
+                        if (event.target == $('.modal#modal-agregar-cerveza')[0]) {
+                            esconderModal('.modal#modal-agregar-cerveza');
                         }
 
                     });

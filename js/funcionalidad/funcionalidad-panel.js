@@ -7,9 +7,14 @@ var nuevaCerveza;
 var coleccionCervezasFavoritas = [];
 var nuevaCervezaBusqueda;
 var coleccionCervezas = [];
+var nuevaCervezaInsercion;
 var nuevaUbicacion;
 var coleccionUbicaciones = [];
 var coleccionMarcadores = [];
+
+/* Variable bandera de validación de campos para inserción. Retorna a false
+cada vez que se abre el modal de agregación de cervezas. */
+var todoCorrectoInsercion = false;
 
 $(document).ready(function() {
     /* Evalúa el estado del usuario al acceder a la página, para saber si hay usuario logueado o no. */
@@ -37,7 +42,7 @@ $(document).ready(function() {
             recogerCervezasBDD();
 
             $('#agregar-cerveza').on('click', function(){
-                agregarCerveza();
+                mostrarModalAgregarCerveza();
             });
             
         }
@@ -333,10 +338,97 @@ function mostrarCervezaBuscada(cervezaSeleccionada){
 }
 
 /* Función encargada de mostrar el modal de agregado de cervezas. */
-function agregarCerveza() {
+function mostrarModalAgregarCerveza() {
 
     /* El parámetro cerveza en este caso será null, ya que va a añadirse y es imposible 
     hacer referencia sin que exista. */
     configurarModal('agregar', null, 'agregado');
+
+}
+
+/**/
+function validarCamposAgregarCerveza() {
+
+    $('#mensaje-error-nombre-agregar').text('');
+    $('#mensaje-error-nombre-agregar').hide();
+    $('#mensaje-error-gradacion-agregar').text('');
+    $('#mensaje-error-gradacion-agregar').hide();
+    $('#mensaje-error-tipo-agregar').text('');
+    $('#mensaje-error-tipo-agregar').hide();
+    $('#mensaje-error-pais-origen-agregar').text('');
+    $('#mensaje-error-pais-origen-agregar').hide();
+    
+
+    nombreValido = false;
+    gradacionValida = false;
+    tipoValido = false;
+    paisOrigenValido = false;
+
+    var nombre = $('#nombre-cerveza-agregar')
+        .val()
+        .trim();
+    var grados = $('#grados-cerveza-agregar').val().trim();
+    var tipo = $('#tipo-cerveza-agregar')
+        .val()
+        .trim();
+    var paisOrigen = $('#pais-origen-cerveza-agregar')
+        .val()
+        .trim();
+
+    if (nombre != '' && nombre.length > 0) {
+        nombreValido = true;
+        if (grados!= '' && !isNaN(grados)) {
+            /* Hace un parseo a Float ya que por defecto lo toma como string. */
+            grados = parseFloat(grados);
+            gradacionValida = true;
+            if (tipo != '' && tipo.length > 0) {
+                tipoValido = true;
+                if (paisOrigen != '' && paisOrigen.length > 0) {
+                    paisOrigenValido = true;
+                } else {
+                    $('#mensaje-error-pais-origen-agregar').text(
+                        'Introduzca un país de origen válido'
+                    );
+                    $('#mensaje-error-pais-origen-agregar').show(200);
+                }
+            } else {
+                $('#mensaje-error-tipo-agregar').text(
+                    'Introduzca un tipo válido'
+                );
+                $('#mensaje-error-tipo-agregar').show(200);
+            }
+        } else {
+            $('#mensaje-error-gradacion-agregar').text(
+                'Introduzca una gradación válida'
+            );
+            $('#mensaje-error-gradacion-agregar').show(200);
+        }
+    } else {
+        $('#mensaje-error-nombre-agregar').text(
+            'Introduzca un nombre válido'
+        );
+        $('#mensaje-error-nombre-agregar').show(200);
+    }
+
+    /* Si todos los campos son correctos, procede a insertar la nueva cerveza en la BDD. */
+    if (nombreValido && gradacionValida && tipoValido && paisOrigenValido) {
+
+        $('#mensaje-error-nombre-agregar').text('');
+        $('#mensaje-error-nombre-agregar').hide();
+        $('#mensaje-error-gradacion-agregar').text('');
+        $('#mensaje-error-gradacion-agregar').hide();
+        $('#mensaje-error-tipo-agregar').text('');
+        $('#mensaje-error-tipo-agregar').hide();
+        $('#mensaje-error-pais-origen-agregar').text('');
+        $('#mensaje-error-pais-origen-agregar').hide();
+
+        todoCorrectoInsercion = true;
+
+        nuevaCervezaInsercion = new Cerveza(nombre, grados, tipo, paisOrigen);
+        return nuevaCervezaInsercion;
+
+    } else {
+        return false;
+    }
 
 }

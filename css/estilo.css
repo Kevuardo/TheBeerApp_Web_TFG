@@ -240,6 +240,7 @@ header {
     flex-direction: row;
     padding: 10px;
     justify-content: center;
+    align-content: center;
 }
 
 .fila button {
@@ -259,4 +260,8 @@ header {
     color: #ea0001;
     text-transform: capitalize;
     text-decoration: underline #ea0001;
+}
+
+#columna-labels-agregar label, #columna-inputs-agregar input, #columna-errores-agregar span {
+    margin: 3px;
 }

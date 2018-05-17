@@ -27,8 +27,8 @@
     margin-left: auto;
 }
 
-.navbar a,
-.navbar span {
+.elemento-nav,
+.btn-sidenav {
     display: inline-block;
     padding: 14px 16px;
     margin: 0;
@@ -47,14 +47,14 @@
 }
 
 .navbar input[type="text"] {
-    padding: 6px;
+    /* padding: 6px;
     margin-top: 8px;
     font-size: 17px;
-    border: none;
+    border: none; */
     font-family: 'Raleway', sans-serif;
 }
 
-.navbar button {
+/* .navbar button {
     float: right;
     padding: 6px 10px;
     margin-top: 8px;
@@ -68,4 +68,4 @@
 
 .navbar button:hover {
     background: var(--colorPrimarioOscuro);
-}
+} */
